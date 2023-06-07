@@ -2,23 +2,25 @@ import { useState } from "react";
 import { ToDoItem } from "../types/ToDo";
 import { v4 as uuidv4 } from "uuid";
 
-export const useToDoList = () => {
+export const useToDoList = (items?: ToDoItem[]) => {
   const orderItems = (toDoItems: ToDoItem[]) =>
     toDoItems.sort((a, b) => Number(a.checked) - Number(b.checked));
 
   const [toDoItems, setToDoItems] = useState<ToDoItem[]>(
-    orderItems([
-      {
-        checked: false,
-        id: uuidv4(),
-        title: "Do the laundry",
-      },
-      {
-        checked: true,
-        id: uuidv4(),
-        title: "Wash dishes",
-      },
-    ])
+    orderItems(
+      items ?? [
+        {
+          checked: false,
+          id: uuidv4(),
+          title: "Do the laundry",
+        },
+        {
+          checked: true,
+          id: uuidv4(),
+          title: "Wash dishes",
+        },
+      ]
+    )
   );
 
   const pushToDoItem = (toDoItem: ToDoItem) =>
