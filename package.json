@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest",
+    "e2e": "concurrently \"npm run dev\" \"delay 10 && playwright test --project=chromium\"",
+    "e2e:headed": "concurrently \"npm run dev\" \"delay 10 && playwright test --project=chromium --headed\""
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -23,6 +25,8 @@
     "@types/react": "18.2.8",
     "@types/react-dom": "18.2.4",
     "@types/uuid": "^9.0.1",
+    "concurrently": "^8.1.0",
+    "delay-cli": "^2.0.0",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.4",
     "next": "13.4.4",
